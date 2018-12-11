@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/_Scenes/Menu.unity
+    guid: da43459a298418242b6030ebc6b4099b
+  - enabled: 1
+    path: Assets/_Scenes/AlarmGame.unity
+    guid: 96a89e3daec6c044e9814f7058558f2b
+  - enabled: 1
+    path: Assets/_Scenes/AlienCalculator.unity
+    guid: 5e08460a9c4c1134d93344626e3992da
   m_configObjects: {}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -78,12 +79,18 @@ public class GameManager : MonoBehaviour {
                 else textR = "Dommage ! Tu peux faire mieux";
                 text.text = result + " / " + resultTrue + "\n" + textR;
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
+                StartCoroutine(ReturnToMenu());
                 break;
 
             default:
                 break;
 
         }
+    }
+    
+    private IEnumerator ReturnToMenu() {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Menu");
     }
 
     public void getEntrer(string entre)

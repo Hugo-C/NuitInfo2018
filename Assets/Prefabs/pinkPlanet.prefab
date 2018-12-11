@@ -37,8 +37,8 @@ GameObject:
   - component: {fileID: 224049161736888448}
   - component: {fileID: 212321491614016884}
   - component: {fileID: 61804926013282826}
-  - component: {fileID: 114165960981079712}
   - component: {fileID: 222156051821031702}
+  - component: {fileID: 114293219633533450}
   m_Layer: 0
   m_Name: pinkPlanet
   m_TagString: Planet
@@ -76,7 +76,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2, y: 2}
-    newSize: {x: 11.93, y: 11.98}
+    newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -84,7 +84,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &114165960981079712
+--- !u!114 &114293219633533450
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1436014960041550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9d4d1a8c452b548bf3836995da14d7, type: 3}
+  m_Script: {fileID: 11500000, guid: e916550955f34504cbefa40e2ed5ddcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212195146588724994
@@ -181,7 +181,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 11.93, y: 11.98}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

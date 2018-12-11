@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class BluePlanet : Planet {
 	
 	public override void DoAction() {
-		SceneManager.LoadScene("AlarmGame");
+		SceneManager.LoadScene("AlienCalculator");
 	}
 }

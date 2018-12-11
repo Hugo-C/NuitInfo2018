@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
@@ -77,5 +78,11 @@ public class LevelManager : MonoBehaviour {
         int percentage = (int)((counter * 100) / timeEnd);
         if (counter > timeEnd) percentage = 100 - (percentage - 100);
         text.text = "<b>" + counter + " - " + timeEnd + "</b>\n" + percentage + "% de précision";
+        StartCoroutine(ReturnToMenu());
+    }
+
+    private IEnumerator ReturnToMenu() {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Menu");
     }
 }
