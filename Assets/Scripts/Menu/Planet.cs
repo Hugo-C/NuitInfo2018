@@ -24,7 +24,6 @@ public class Planet : MonoBehaviour {
     }
 
     public void ShowActionUi() {
-        Debug.Log("AFFICHE " + gameObject);
         keyE.GetComponent<SpriteRenderer>().enabled = true;
         lastTimeCalledShowAction = Time.timeScale;
     }
@@ -34,6 +33,6 @@ public class Planet : MonoBehaviour {
     }
 
     public virtual void DoAction() {
-        Debug.Log("DoAtion");
+        Debug.Log("DoAction");
     }
 }

@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log(inputField.GetComponent<InputField>().text);
         result = int.Parse(inputField.GetComponent<InputField>().text);
-        Debug.Log("wow");
         phase = GamePhase.afficheResultat;
         inputField.SetActive(false);
         desactiveAliens();

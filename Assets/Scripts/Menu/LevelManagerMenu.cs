@@ -1,22 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using Random = UnityEngine.Random;
 
 public class LevelManagerMenu : MonoBehaviour {
 
-    private const float DISTANCE_BEFORE_RESPAWN = 75f;
-    
+    private const float PlanetDistanceBeforeRespawn = 75f;
+    private const float PlanetDistanceAtSpawn = 50f;
+
     public GameObject player;
     public float FieldWidth;
     public float FieldHeight;
     public GameObject[] planetsPrefab;
 
+    private Dictionary<float, Vector3> _angleToVectorDp = new Dictionary<float, Vector3>();
+    
     private float xOffset;
     private float yOffset;
     private GameObject[] planetsGO;
 
     // Use this for initialization
     void Start() {
+        Assert.IsTrue(PlanetDistanceAtSpawn <= PlanetDistanceBeforeRespawn);
         xOffset = FieldWidth * 0.5f; // Offset the coordinates to distribute the spread
         yOffset = FieldHeight * 0.5f; // around the object's center
 
@@ -27,9 +32,17 @@ public class LevelManagerMenu : MonoBehaviour {
     }
 
     private Vector2 GetRandomPlanetPosition() {
-        float x = Random.Range(0, FieldWidth);
-        float y = Random.Range(0, FieldWidth);
-        return new Vector2(x - xOffset, y - yOffset);
+        // first we found where the player is heading
+        Vector3 futurePosition = AngleToVector(player.transform.rotation.eulerAngles.z);
+        futurePosition *= PlanetDistanceAtSpawn;
+        futurePosition += player.transform.position;
+        
+        // then we add some randomness
+        float x = Random.Range(0, FieldWidth) - xOffset;
+        float y = Random.Range(0, FieldWidth) - yOffset;
+        futurePosition.x += x;
+        futurePosition.y += y;
+        return futurePosition;
     }
 
     // Update is called once per frame
@@ -39,13 +52,19 @@ public class LevelManagerMenu : MonoBehaviour {
         }
 
         foreach (var planet in planetsGO) {
-            if (Vector3.Distance(planet.transform.position, player.transform.position) > DISTANCE_BEFORE_RESPAWN) {
-                Vector3 rng = GetRandomPlanetPosition();
-                if (Vector3.Distance(rng + player.transform.position, player.transform.position) < 15f) {  // BIDOUILLE to have a planet a bit far from player
-                    rng = GetRandomPlanetPosition();
-                }
-                planet.transform.position = rng + player.transform.position;
+            if (Vector3.Distance(planet.transform.position, player.transform.position) > PlanetDistanceBeforeRespawn) {
+                planet.transform.position = GetRandomPlanetPosition();
             }
         }
+    }
+    
+    private Vector3 AngleToVector(float zAngle) {
+        if (!_angleToVectorDp.ContainsKey(zAngle)) {
+            var horizontal = Mathf.Cos((zAngle + 90f) * Mathf.PI / 180f);
+            var vertical = Mathf.Sin((zAngle + 90f) * Mathf.PI / 180f);
+            _angleToVectorDp.Add(zAngle, new Vector3(horizontal, vertical));
+        }
+
+        return _angleToVectorDp[zAngle];
     }
 }
